@@ -53,5 +53,31 @@ if __name__ == "__main__":
 
 
     ### Put your code below here
+my_altitudes = []
+for entry in data:
+    GPS Alt = entry["Temperature"]
+    my_altitudes.append(GPS Alt)
+print(my_altitudes)
+    
+import matplotlib.pyplot as plt  #Imports the pyplot function from matplotlib, renames it plt.
+import numpy  #Imports numpy.
+from datetime import date as dt  #Imports the date function from datetime.
+
+today = dt.today() #Saves the date in the variable 'today'.
+day = (str(today.day)+"/").zfill(3)  #Converts the day to a string, adds a forwardslash and pads it with zeros.
+month = (str(today.month)+"/").zfill(3) #Converts the month to a string, adds a forwardslash and pads it with zeros.
+date = (day+month+str(today.year)) #Forms a dtring value for the date in the form dd/mm/yyyy
+filedate = date.replace('/', '_')  #Removes the forward slashes from the date so that it can be used in a filename.
+
+##Creating the graphs. This can be copied and tweaked to plot different variables against each other.
+
+plt.plot(my_temperatures, my_altitudes, 'bo--')  #Creates a plot of Temperature vs altitude, points are marked with a blue circle and connected with a dashed line.
+plt.title("Temperature vs Altitude  " + date)   #Titles the plot 'Temperature vs Altitude  dd/mm/yyyy'.
+plt.xlabel('Temperature, Celsius')   #Labels the x axis 'Temperature, Celsius'.
+plt.ylabel('Altitude, feet')   #Labels the y axis 'Altitude, feet'. 
+fig1 = plt.gcf()  #Saves the current plot as 'fig1'
+fig1.savefig('A_vs_T_'+ filedate +'.png', transparent=True, dpi=80, bbox_inches="tight") #Saves the plot as a png file named 'A_vs_T_dd_mm_yyyy.png'.
+
+
 
 
